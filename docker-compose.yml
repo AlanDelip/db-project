@@ -1,25 +1,25 @@
 version: "3.7"
 
 services:
-  web:
-    build: .
-    ports:
-      - 8080:5000
-    volumes:
-      - ./:/home/app
+    web:
+        build: .
+        ports:
+            - 8080:5000
+        volumes:
+            - ./:/home/app
     depends_on:
-      - localhost
+        - db
 
-  localhost:
-    image: postgres:10
-    environment:
-      POSTGRES_DB: yelp
-      POSTGRES_USER: w4111
-      POSTGRES_PASSWORD: w4111
-    volumes:
-      - pg-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+    db:
+        image: postgres:10
+        environment:
+            POSTGRES_DB: yelp
+            POSTGRES_USER: w4111
+            POSTGRES_PASSWORD: w4111
+        volumes:
+            - pg-data:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
 
 volumes:
-  pg-data:
+    pg-data:
